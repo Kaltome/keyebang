@@ -1,6 +1,13 @@
 package com.shg.keyebang.model;
 
-public class Course {
+import cn.bmob.v3.BmobObject;
+
+public class Course extends BmobObject {
+
+    public Course(){
+        this.setTableName("ClassTable");
+    }
+
     private String className;
     private String classPlace;
     private String teacher;
@@ -8,7 +15,11 @@ public class Course {
     private int firstClass;
     private int lastClass;
 
+
+    private User student;
+
     public Course(String className, String classPlace, String teacher, int weekday, int firstClass, int lastClass) {
+
         this.className = className;
         this.classPlace = classPlace;
         this.teacher = teacher;
@@ -17,6 +28,10 @@ public class Course {
         this.lastClass = lastClass;
     }
 
+    public Course setStudent(User student){
+        this.student=student;
+        return this;
+    }
     public String getClassName() {
         return className;
     }

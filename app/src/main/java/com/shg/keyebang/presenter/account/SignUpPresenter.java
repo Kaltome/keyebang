@@ -35,7 +35,7 @@ public class SignUpPresenter extends BasePresenter {
         user.setSemester(semester);
         user.setMajor(major);
 
-        Account4m3.gatInfo(user, password, studentId, "", new GetInfoListener() {
+        Account4m3.getInfo(user, password, studentId, "", new GetInfoListener() {
             @Override
             public void onSuccess(String message) {
                 activity.toast(message);

@@ -3,11 +3,10 @@ package com.shg.keyebang.services.account;
 import com.shg.keyebang.model.User;
 
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 public class Account4m3 {
 
-    public static void gatInfo(final User user, String password, String id4m3 , String password4m3, GetInfoListener listener) {
+    public static void getInfo(final User user, String password, String id4m3 , String password4m3, GetInfoListener listener) {
 
         user.setPassword(password);
         user.setId4m3(id4m3);
@@ -16,9 +15,9 @@ public class Account4m3 {
             @Override
             public void done(BmobException e) {
                 if(e==null){
-                    listener.onSuccess("添加数据成功");
+                    listener.onSuccess(user,"添加数据成功");
                 }else{
-                    listener.onFailure("创建数据失败：" + e.getMessage());
+                    listener.onFailure("添加数据失败：" + e.getErrorCode()+ "-" + e.getMessage() + "\n");
                 }
             }
 
