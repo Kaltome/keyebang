@@ -4,25 +4,28 @@ import com.shg.keyebang.model.Course;
 import com.shg.keyebang.model.Todo;
 import com.shg.keyebang.model.User;
 
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 
 
 public class TodoTable {
 
-    public static void setTodo(final Todo todo,Course course, String className, String todoTitle, String todoMessage, int year, int month, int dayOfMonth, int hourOfDay, int minute, CourseTableListener listener){
+    public static void setTodo(final Todo todo, String className, String todoTitle, String todoMessage, int year, int month, int dayOfMonth, CourseTableListener listener){
 
-        User user = BmobUser.getCurrentUser(User.class);
-        //Course course =new Course()//关联到course类
+
+        Course course =new Course();//关联到course类
         course.setClassName(className);
         todo.setClassName(course);
         //
         todo.setYear(year);
         todo.setMonth(month);
         todo.setDayOfMonth(dayOfMonth);
-        todo.setHourOfDay(hourOfDay);
-        todo.setMinute(minute);
         todo.setTodoMessage(todoMessage);
         todo.setTodoTitle(todoTitle);
         todo.save(new SaveListener<String>() {
@@ -33,6 +36,22 @@ public class TodoTable {
                 else{listener.onFailure("添加数据失败：" + e.getErrorCode()+ "-" + e.getMessage() + "\n");}
             }
 
+        });
+    }
+
+    public static void getTodo(Course course,GetTodoListener listener){
+        BmobQuery<Todo> query =new BmobQuery<>();
+        query.addWhereEqualTo("className",new BmobPointer(course));
+        query.include("user,course.student");
+        query.findObjects(new FindListener<Todo>() {
+            @Override
+            public void done(List<Todo> object, BmobException e) {
+                if(e==null){
+                    listener.onSuccess("查询成功" + object.size()+"条数据");
+                }else{
+                    listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());
+                }
+            }
         });
     }
 }

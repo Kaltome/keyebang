@@ -16,14 +16,9 @@ public class Course extends BmobObject {
 
     private User student;
 
-    public Course(String className, String classPlace, String teacher, int weekday, int firstClass, int lastClass) {
 
-        this.className = className;
-        this.classPlace = classPlace;
-        this.teacher = teacher;
-        this.weekday = weekday;
-        this.firstClass = firstClass;
-        this.lastClass = lastClass;
+    public User getStudent(){
+        return student;
     }
 
     public Course setStudent(User student){

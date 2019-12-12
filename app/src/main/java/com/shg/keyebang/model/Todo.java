@@ -10,12 +10,13 @@ public class Todo extends BmobObject{
     private int year;
     private int month;
     private int dayOfMonth;
-    private int hourOfDay;
-    private int minute;
 
-    private  Course course;
-    private  Course className;
 
+    private User user;
+    private Course course;
+    private Course className;
+
+    private User student;
 
     public Todo(String todoTitle, String todoMessage, Calendar date) {
         this.todoTitle = todoTitle;
@@ -23,6 +24,23 @@ public class Todo extends BmobObject{
         this.date = date;
     }
 
+    public User getStudent(){
+        return student;
+    }
+    public Todo setStudent(User student){
+        this.student=student;
+        return this;
+    }
+    //关联到user类
+    public User getUser(){
+        return user;
+
+    }
+    public Todo setUser(User user){
+        this.user=user;
+        return this;
+    }
+    //关联到course类
     public Course getCourse(){
         return course;
     }
@@ -30,6 +48,11 @@ public class Todo extends BmobObject{
         this.course=course;
         return this;
     }
+
+    public Course getClassName(){
+        return className;
+    }
+
     public Todo setClassName(Course className){
         this.className=className;
         return this;
@@ -75,12 +98,5 @@ public class Todo extends BmobObject{
         return this;
     }
 
-    public Todo setHourOfDay(int hourOfDay){
-        this.hourOfDay=hourOfDay;
-        return this;
-    }
-    public Todo setMinute(int minute){
-        this.minute=minute;
-        return this;
-    }
+
 }
