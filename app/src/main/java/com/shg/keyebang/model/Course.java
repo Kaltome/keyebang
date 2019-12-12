@@ -4,9 +4,7 @@ import cn.bmob.v3.BmobObject;
 
 public class Course extends BmobObject {
 
-    public Course(){
-        this.setTableName("ClassTable");
-    }
+
 
     private String className;
     private String classPlace;

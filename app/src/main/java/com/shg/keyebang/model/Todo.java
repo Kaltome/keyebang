@@ -13,17 +13,23 @@ public class Todo extends BmobObject{
     private int hourOfDay;
     private int minute;
 
+    private  Course course;
     private  Course className;
 
-    public Todo(){
-        this.setTableName("ClassTable");
-    }
+
     public Todo(String todoTitle, String todoMessage, Calendar date) {
         this.todoTitle = todoTitle;
         this.todoMessage = todoMessage;
         this.date = date;
     }
 
+    public Course getCourse(){
+        return course;
+    }
+    public Todo setCourse(Course course){
+        this.course=course;
+        return this;
+    }
     public Todo setClassName(Course className){
         this.className=className;
         return this;

@@ -2,16 +2,19 @@ package com.shg.keyebang.services.coursetable;
 
 import com.shg.keyebang.model.Course;
 import com.shg.keyebang.model.Todo;
+import com.shg.keyebang.model.User;
 
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
 
 public class TodoTable {
 
-    public static void getTodo(final Todo todo, String className, String todoTitle, String todoMessage, int year, int month, int dayOfMonth, int hourOfDay, int minute, CourseTableListener listener){
+    public static void setTodo(final Todo todo,Course course, String className, String todoTitle, String todoMessage, int year, int month, int dayOfMonth, int hourOfDay, int minute, CourseTableListener listener){
 
-        Course course =new Course();//关联到course类
+        User user = BmobUser.getCurrentUser(User.class);
+        //Course course =new Course()//关联到course类
         course.setClassName(className);
         todo.setClassName(course);
         //
