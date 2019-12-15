@@ -69,5 +69,6 @@ public class LogInPresenter extends BasePresenter {
 
     public void commonLogin(String username, String password){
 
+
     }
 }

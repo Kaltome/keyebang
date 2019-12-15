@@ -5,6 +5,8 @@ import com.shg.keyebang.model.Course;
 import com.shg.keyebang.model.Todo;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.fakeservices.coursetable.FakeTableService;
+import com.shg.keyebang.services.coursetable.CourseTable;
+import com.shg.keyebang.services.coursetable.GetClassListener;
 import com.shg.keyebang.view.activity.coursetable.CourseTableActivity;
 
 import java.util.Map;
@@ -19,7 +21,7 @@ public class ClassTablePresenter extends BasePresenter {
 
     public void fakeGetTable(){
         if(true){
-            FakeTableService.getTable("User.getCurrentUser(User.class).getStudentId()", new FakeGetTableListener() {
+            CourseTable.getClass(new GetClassListener() {
                 @Override
                 public void onSuccess(Map<Course, Todo> table) {
                     activity.setCourseTable(table);

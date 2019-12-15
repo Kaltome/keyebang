@@ -16,18 +16,10 @@ import cn.bmob.v3.listener.SaveListener;
 
 public class TodoTable {
 
-    public static void setTodo(final Todo todo, String className, String todoTitle, String todoMessage, int year, int month, int dayOfMonth, CourseTableListener listener){
+    public static void setTodo(final Todo todo, String classId,  CourseTableListener listener){
 
 
-        Course course =new Course();//关联到course类
-        course.setClassName(className);
-        todo.setClassName(course);
-        //
-        todo.setYear(year);
-        todo.setMonth(month);
-        todo.setDayOfMonth(dayOfMonth);
-        todo.setTodoMessage(todoMessage);
-        todo.setTodoTitle(todoTitle);
+
         todo.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {
@@ -41,7 +33,7 @@ public class TodoTable {
 
     public static void getTodo(Course course,GetTodoListener listener){
         BmobQuery<Todo> query =new BmobQuery<>();
-        query.addWhereEqualTo("className",new BmobPointer(course));
+        query.addWhereEqualTo("classID",new BmobPointer(course));
         query.include("user,course.student");
         query.findObjects(new FindListener<Todo>() {
             @Override

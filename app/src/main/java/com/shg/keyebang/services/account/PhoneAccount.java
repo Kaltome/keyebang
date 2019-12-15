@@ -32,7 +32,7 @@ public class PhoneAccount {
 
                 if (e == null) {
                     if(user.getId4m3()==null){
-                        listener.signupSuccess(user, "短信注册成功:"+ user.getUsername());
+                        listener.signupSuccess( "短信注册成功:"+ user.getUsername());
                     }
                     else{
                     listener.loginSuccess("短信登录成功：" + user.getUsername());}
